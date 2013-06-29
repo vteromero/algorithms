@@ -55,6 +55,15 @@ void MergeSort::Merge(int *array, int start1, int length1, int start2, int lengt
             array[k] = right[j];
             ++j;
         }
+        else
+        {
+            array[k] = left[i];
+            ++i;
+            ++k;
+
+            array[k] = right[j];
+            ++j;
+        }
     }
 
     delete [] left;

@@ -21,9 +21,12 @@ int LoadArrayFromFile(const char* filename, int **array, int *length);
 int SaveArrayToFile(const char* filename, int *array, int length);
 
 // Creates a sparse random array of integer numbers.
+// A sparse array is an array which holds n random elements.
 int *CreateSparseRandomArray(int n);
 
 // Creates a continuous random array of integer numbers.
+// A continuous random array is an array which holds all the integers
+// from 0 to n-1 in a random way.
 int *CreateContinuousRandomArray(int n);
 
 #endif // INT_ARRAY_H_

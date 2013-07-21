@@ -1,3 +1,9 @@
+// Copyright (c) 2013 Vicente Romero Calero
+//
+// Distributed under the MIT software license, see the file LICENSE
+//
+// Author: Vicente Romero <vteromero@gmail.com>
+
 #include "merge-sort.h"
 
 #include <algorithm>
@@ -12,6 +18,8 @@ void MergeSort::Sort(int *array, int length)
     SortRange(array, 0, length);
 }
 
+// Recursively, sorts the left and right halves and then merges them
+// into a unique array.
 void MergeSort::SortRange(int *array, int start, int length)
 {
     if(length < 2)

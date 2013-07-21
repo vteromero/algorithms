@@ -1,3 +1,9 @@
+// Copyright (c) 2013 Vicente Romero Calero
+//
+// Distributed under the MIT software license, see the file LICENSE
+//
+// Author: Vicente Romero <vteromero@gmail.com>
+
 #include "selection-sort.h"
 
 SelectionSort::SelectionSort() {}

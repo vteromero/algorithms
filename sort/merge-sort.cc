@@ -9,13 +9,34 @@
 #include <algorithm>
 #include <limits.h>
 
-MergeSort::MergeSort() {}
+MergeSort::MergeSort()
+{
+#ifdef SORTSTATS
+    stats_ = new SortStats;
+    InitSortStats(stats_);
+#else
+    stats_ = NULL;
+#endif
+}
 
-MergeSort::~MergeSort() {}
+MergeSort::~MergeSort()
+{
+    if(stats_ != NULL)
+        delete stats_;
+}
 
 void MergeSort::Sort(int *array, int length)
 {
+#ifdef SORTSTATS
+    stats_->array_length = length;
+#endif
+
     SortRange(array, 0, length);
+}
+
+SortStats *MergeSort::Statistics()
+{
+    return stats_;
 }
 
 // Recursively, sorts the left and right halves and then merges them
@@ -45,6 +66,10 @@ void MergeSort::Merge(int *array, int start1, int length1, int start2, int lengt
     std::copy(&(array[start1]), &(array[start1 + length1]), left);
     std::copy(&(array[start2]), &(array[start2 + length2]), right);
 
+#ifdef SORTSTATS
+    stats_->extra_memory += (length1 + length2) * sizeof(int);
+#endif
+
     left[length1] = INT_MAX;
     right[length2] = INT_MAX;
 
@@ -53,18 +78,34 @@ void MergeSort::Merge(int *array, int start1, int length1, int start2, int lengt
 
     for(int i=0, j=0, k=start; k<end; ++k)
     {
+#ifdef SORTSTATS
+        ++(stats_->iterations);
+#endif
+
         if(left[i] < right[j])
         {
+#ifdef SORTSTATS
+            ++(stats_->comparisons);
+#endif
+
             array[k] = left[i];
             ++i;
         }
         else if(right[j] < left[i])
         {
+#ifdef SORTSTATS
+            stats_->comparisons += 2;
+#endif
+
             array[k] = right[j];
             ++j;
         }
         else
         {
+#ifdef SORTSTATS
+            stats_->comparisons += 2;
+#endif
+
             array[k] = left[i];
             ++i;
             ++k;

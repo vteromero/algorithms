@@ -9,6 +9,7 @@
 #include <stdio.h>
 
 #include "sort/bubble-sort.h"
+#include "sort/sort-stats.h"
 #include "util/int-array.h"
 
 int main()
@@ -23,6 +24,10 @@ int main()
     for(int i=0; i<length; ++i)
         printf(" %d", array[i]);
     printf("\n");
+
+    SortStats *stats = bsort.Statistics();
+    if(stats != NULL)
+        PrintSortStats(*stats);
 
     return 0;
 }

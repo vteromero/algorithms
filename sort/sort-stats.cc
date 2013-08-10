@@ -26,7 +26,7 @@ void PrintSortStats(const SortStats& stats)
     double swaps_n = stats.swaps * one_n;
 
     double log2n = log2(stats.array_length);
-    long long square_n = stats.array_length * stats.array_length;
+    long long square_n = (long long)stats.array_length * stats.array_length;
 
     printf("\n** Stats **\n\n");
     printf("%-20s%20d\n", "Array length (N):", stats.array_length);

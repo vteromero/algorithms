@@ -42,7 +42,7 @@ int LoadArrayFromFile(const char* filename, int **array, int *length)
     return 1;
 }
 
-int SaveArrayToFile(const char* filename, int *array, int length)
+int SaveArrayToFile(const char* filename, const int *array, int length)
 {
     FILE *file = fopen(filename, "w");
     if(file == NULL)
@@ -106,4 +106,30 @@ int *CreateContinuousRandomArray(int n)
     }
 
     return result;
+}
+
+void PrintArray(const int *array, int length)
+{
+    printf("Values (%d):", length);
+    for(int i=0; i<length; ++i)
+        printf(" %d", array[i]);
+    printf("\n");
+}
+
+bool CheckSortedArray(const int *array, int length, SortType sorttype)
+{
+    if(sorttype == ASC_SORT)
+    {
+        for(int i=1; i<length; ++i)
+            if(array[i] < array[i - 1])
+                return false;
+    }
+    else if(sorttype == DESC_SORT)
+    {
+        for(int i=1; i<length; ++i)
+            if(array[i] > array[i - 1])
+                return false;
+    }
+
+    return true;
 }

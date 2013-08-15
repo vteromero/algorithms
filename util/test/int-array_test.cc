@@ -11,16 +11,6 @@
 
 #include "util/int-array.h"
 
-void PrintArray(const int *array, int length)
-{
-    printf("Length: %d\n", length);
-
-    printf("Values:");
-    for(int i=0; i<length; ++i)
-        printf(" %d", array[i]);
-    printf("\n");
-}
-
 void Usage(const char *name)
 {
     printf("Usage:\n");

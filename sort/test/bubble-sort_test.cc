@@ -20,10 +20,13 @@ int main()
 
     bsort.Sort(array, length);
 
-    printf("Values:");
-    for(int i=0; i<length; ++i)
-        printf(" %d", array[i]);
-    printf("\n");
+    bool sorted = CheckSortedArray(array, length, ASC_SORT);
+    if(sorted)
+        printf("Checking array... The array is sorted.\n");
+    else
+        printf("Checking array... The array is NOT sorted.\n");
+
+    PrintArray(array, length);
 
     SortStats *stats = bsort.Statistics();
     if(stats != NULL)

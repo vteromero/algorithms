@@ -12,13 +12,16 @@
 // Calculates the length of the array 'x'
 #define NELEMS(x) (sizeof(x) / sizeof(x[0]))
 
+// Possible sorting types
+enum SortType {ASC_SORT, DESC_SORT};
+
 // Loads an integer array from a file name. The array is loaded
 // in the 'array' output param and its length is returned in the
 // 'length' output param.
 int LoadArrayFromFile(const char* filename, int **array, int *length);
 
 // Saves an integer array in a file.
-int SaveArrayToFile(const char* filename, int *array, int length);
+int SaveArrayToFile(const char* filename, const int *array, int length);
 
 // Creates a sparse random array of integer numbers.
 // A sparse array is an array which holds n random elements.
@@ -28,5 +31,11 @@ int *CreateSparseRandomArray(int n);
 // A continuous random array is an array which holds all the integers
 // from 0 to n-1 in a random way.
 int *CreateContinuousRandomArray(int n);
+
+// Prints array values
+void PrintArray(const int *array, int length);
+
+// Returns true if the array is sorted according to the 'sorttype' param
+bool CheckSortedArray(const int *array, int length, SortType sorttype);
 
 #endif // INT_ARRAY_H_

@@ -73,9 +73,10 @@ int *CreateSparseRandomArray(int n)
     srand(time(NULL));
 
     int *result = new int[n];
+    int sign[] = {1, -1};
 
     for(int i=0; i<n; ++i)
-        result[i] = rand();
+        result[i] = rand() * sign[rand() % 2];
 
     return result;
 }

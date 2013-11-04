@@ -92,7 +92,10 @@ public:
         size_ = 0;
     }
 
-    ~BST() {} // TODO: implement. free memory
+    ~BST()
+    {
+        Clear();
+    }
 
     void InOrderWalk(const BSTWalkCallback &callback)
     {
@@ -175,7 +178,7 @@ public:
             lmin->set_parent(min);
         }
 
-        // TODO: free memory
+        delete node;
 
         --size_;
     }
@@ -200,6 +203,13 @@ public:
     }
 
     //TODO: T& Get(int position) {}
+
+    void Clear()
+    {
+        ClearFromNode(root_);
+        root_ = NULL;
+        size_ = 0;
+    }
 
     int size()
     {
@@ -301,6 +311,17 @@ private:
 
         if(v != NULL)
             v->set_parent(uparent);
+    }
+
+    void ClearFromNode(BSTNode<T> *node)
+    {
+        // Post-order cleaning
+        if(node != NULL)
+        {
+            ClearFromNode(node->left());
+            ClearFromNode(node->right());
+            delete node;
+        }
     }
 
     BSTNode<T> *root_;

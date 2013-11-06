@@ -9,6 +9,7 @@
 #ifndef BST_H_
 #define BST_H_
 
+#include <assert.h>
 #include <stddef.h>
 
 template <class T>
@@ -185,6 +186,8 @@ public:
 
     T& Minimum()
     {
+        assert(size_ > 0);
+
         BSTNode<T> *min = MinimumFromNode(root_);
 
         return min->value();
@@ -192,6 +195,8 @@ public:
 
     T& Maximum()
     {
+        assert(size_ > 0);
+
         BSTNode<T> *max = MaximumFromNode(root_);
 
         return max->value();
@@ -202,7 +207,15 @@ public:
         return SearchFromNode(root_, value);
     }
 
-    //TODO: T& Get(int position) {}
+    T& Get(int position)
+    {
+        assert(position >= 0);
+        assert(position < size_);
+
+        BSTNode<T> *node = InOrderStepsFromNode(root_, &position);
+
+        return node->value();
+    }
 
     void Clear()
     {
@@ -267,7 +280,8 @@ private:
 
     BSTNode<T> *MinimumFromNode(BSTNode<T> *node)
     {
-        // TODO: check node != NULL && size > 0
+        assert(node != NULL);
+
         while(node->left() != NULL)
             node = node->left();
 
@@ -276,7 +290,8 @@ private:
 
     BSTNode<T> *MaximumFromNode(BSTNode<T> *node)
     {
-        // TODO: check node != NULL && size > 0
+        assert(node != NULL);
+
         while(node->right() != NULL)
             node = node->right();
 
@@ -311,6 +326,29 @@ private:
 
         if(v != NULL)
             v->set_parent(uparent);
+    }
+
+    BSTNode<T> *InOrderStepsFromNode(
+        BSTNode<T> *node,
+        int *steps)
+    {
+        if(node == NULL)
+            return NULL;
+
+        BSTNode<T> *left = InOrderStepsFromNode(node->left(), steps);
+        if(left != NULL)
+            return left;
+
+        if(*steps == 0)
+            return node;
+        else
+            --(*steps);
+
+        BSTNode<T> *right = InOrderStepsFromNode(node->right(), steps);
+        if(right != NULL)
+            return right;
+
+        return NULL;
     }
 
     void ClearFromNode(BSTNode<T> *node)

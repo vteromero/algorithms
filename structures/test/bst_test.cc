@@ -87,5 +87,9 @@ int main()
     CheckValue(bst, 1000);
     CheckValue(bst, 3);
 
+    printf("\n****** Accessing through position ******\n");
+    printf("Value at 0: %d\n", bst.Get(0));
+    printf("Value at 2: %d\n", bst.Get(2));
+
     return 0;
 }

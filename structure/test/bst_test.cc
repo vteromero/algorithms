@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-#include "structures/bst.h"
+#include "structure/bst.h"
 
 void PrintValue(const int &value)
 {

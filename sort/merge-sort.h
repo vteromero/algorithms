@@ -9,18 +9,14 @@
 #ifndef MERGE_SORT_H_
 #define MERGE_SORT_H_
 
-#include "sort-stats.h"
+#include "isort.h"
 
-class MergeSort
+class MergeSort: public ISort
 {
 public:
     MergeSort();
     ~MergeSort();
-
-    // Sorts an integer array into ascending order.
     void Sort(int *array, int length);
-
-    // Statistics of the sorting algorithm
     SortStats *Statistics();
 
 private:

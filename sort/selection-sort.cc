@@ -6,6 +6,7 @@
 
 #include "selection-sort.h"
 
+#include <assert.h>
 #include <stddef.h>
 
 SelectionSort::SelectionSort()
@@ -26,7 +27,11 @@ SelectionSort::~SelectionSort()
 
 void SelectionSort::Sort(int *array, int length)
 {
+    assert(array != NULL);
+    assert(length > 0);
+
 #ifdef SORTSTATS
+    InitSortStats(stats_);
     stats_->array_length = length;
 #endif
 

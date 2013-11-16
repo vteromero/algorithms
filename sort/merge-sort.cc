@@ -6,8 +6,9 @@
 
 #include "merge-sort.h"
 
+#include <assert.h>
 #include <algorithm>
-#include <limits.h>
+#include <limits>
 
 MergeSort::MergeSort()
 {
@@ -27,7 +28,11 @@ MergeSort::~MergeSort()
 
 void MergeSort::Sort(int *array, int length)
 {
+    assert(array != NULL);
+    assert(length > 0);
+
 #ifdef SORTSTATS
+    InitSortStats(stats_);
     stats_->array_length = length;
 #endif
 
@@ -70,8 +75,8 @@ void MergeSort::Merge(int *array, int start1, int length1, int start2, int lengt
     stats_->extra_memory += (length1 + length2) * sizeof(int);
 #endif
 
-    left[length1] = INT_MAX;
-    right[length2] = INT_MAX;
+    left[length1] = std::numeric_limits<int>::max();
+    right[length2] = std::numeric_limits<int>::max();
 
     int start = start1;
     int end = start1 + length1 + length2;

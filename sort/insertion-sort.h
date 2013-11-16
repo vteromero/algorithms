@@ -9,18 +9,14 @@
 #ifndef INSERTION_SORT_H_
 #define INSERTION_SORT_H_
 
-#include "sort-stats.h"
+#include "isort.h"
 
-class InsertionSort
+class InsertionSort: public ISort
 {
 public:
     InsertionSort();
     ~InsertionSort();
-
-    // Sorts an integer array into ascending order.
     void Sort(int *array, int length);
-
-    // Statistics of the sorting algorithm
     SortStats *Statistics();
 
 private:

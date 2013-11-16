@@ -6,6 +6,7 @@
 
 #include "insertion-sort.h"
 
+#include <assert.h>
 #include <stddef.h>
 
 InsertionSort::InsertionSort()
@@ -26,7 +27,11 @@ InsertionSort::~InsertionSort()
 
 void InsertionSort::Sort(int *array, int length)
 {
+    assert(array != NULL);
+    assert(length > 0);
+
 #ifdef SORTSTATS
+    InitSortStats(stats_);
     stats_->array_length = length;
 #endif
 

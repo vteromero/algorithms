@@ -9,18 +9,14 @@
 #ifndef BUBBLE_SORT_H_
 #define BUBBLE_SORT_H_
 
-#include "sort-stats.h"
+#include "isort.h"
 
-class BubbleSort
+class BubbleSort: public ISort
 {
 public:
     BubbleSort();
     ~BubbleSort();
-
-    // Sorts an integer array into ascending order.
     void Sort(int *array, int length);
-
-    // Statistics of the sorting algorithm
     SortStats *Statistics();
 
 private:
